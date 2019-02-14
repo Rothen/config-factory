@@ -1,0 +1,40 @@
+{
+  "name": "config-factory",
+  "version": "0.1.0",
+  "description": "",
+  "main": "build/index.js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "npm": "^5.10.0"
+  },
+  "repository": "github:Rothen/config-factory",
+  "devDependencies": {
+    "@types/jasmine": "^3.3.8",
+    "@types/node": "^10.12.21",
+    "jasmine": "^3.3.1",
+    "jasmine-spec-reporter": "^4.2.1",
+    "jasmine-ts": "^0.3.0",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.2.0",
+    "ts-node": "8.0.2",
+    "tsc": "1.20150623.0",
+    "tsconfig-lint": "^0.12.0",
+    "tslint": "^5.12.1",
+    "typedoc": "^0.14.2",
+    "typescript": "3.3.1"
+  },
+  "scripts": {
+    "build": "tsc && npm run lint",
+    "dev": "tsc --watch & nodemon dev",
+    "test": "nyc  -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts ./tsconfig.json --config=./jasmine.json",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "tsc": "tsc",
+    "start": "nodemon --config nodemon.json"
+  },
+  "keywords": [
+    "config",
+    "factory"
+  ],
+  "author": "Benjamin Ricchiuto",
+  "license": "ISC"
+}
