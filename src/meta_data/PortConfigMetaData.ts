@@ -4,10 +4,10 @@ export class PortConfigMetaData extends ConfigMetaData {
     private minValue: number;
     private maxValue: number;
 
-    constructor(target: any, property: string, minValue: number = 0, maxValue: number = 65535) {
+    constructor(target: any, property: string, minValue?: number, maxValue?: number) {
         super(target, property);
         this.minValue = Math.max(minValue, 0);
-        this.maxValue = Math.min(maxValue, 0);
+        this.maxValue = Math.min(maxValue, 65535);
     }
 
     protected async processValue(value: number): Promise<number> {

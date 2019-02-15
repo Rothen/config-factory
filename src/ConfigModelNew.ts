@@ -3,7 +3,13 @@ import { HostConfig } from './decorator/HostConfig';
 import { PortConfig } from './decorator/PortConfig';
 import { StringConfig } from './decorator/StringConfig';
 import { ObjectConfig } from './decorator/ObjectConfig';
-import { ClassConfig } from './decorator/ClassConfig';
+
+export class ConfigModelNew {
+    @ObjectConfig()
+    public server: ConfigServer = new ConfigServer();
+    @ObjectConfig()
+    public mqtt: ConfigMQTT = new ConfigMQTT();
+}
 
 export class ConfigServer {
     @HostConfig()
@@ -32,12 +38,4 @@ export class ConfigMQTT {
     public user: string = process.env.MQTT_USERNAME;
     @StringConfig()
     public password: string = process.env.MQTT_PASSWORD;
-}
-
-@ClassConfig
-export class ConfigModelNew {
-    @ObjectConfig()
-    public server: ConfigServer = new ConfigServer();
-    @ObjectConfig()
-    public mqtt: ConfigMQTT = new ConfigMQTT();
 }

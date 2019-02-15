@@ -10,6 +10,7 @@ export class FileConfigMetaData extends ConfigMetaData {
     }
 
     protected async processValue(filePath: string): Promise<string> {
+        console.log(filePath);
         if (!filePath || filePath.length === 0) {
             throw new Error(`The path config ${this.property} cannot be empty`);
         }

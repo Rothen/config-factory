@@ -7,9 +7,9 @@ export abstract class ConfigMetaData {
         this.property = property;
     }
 
-    public async setConfig(config: object): Promise<any> {
-        this.target[this.property] = await this.processValue(config[this.property]);
-        return this.target[this.property];
+    public async setConfig(target: any, config: any): Promise<any> {
+        target[this.property] = await this.processValue(config[this.property]);
+        return target[this.property];
     }
 
     protected abstract async processValue(filePath: any): Promise<any>;
