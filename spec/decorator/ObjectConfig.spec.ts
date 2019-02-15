@@ -1,4 +1,4 @@
-import { ObjectConfig } from '../../src/decorator/ObjectConfig';
+import { ObjectConfig } from '../../src';
 
 class MockObjectConfig {
     @ObjectConfig()

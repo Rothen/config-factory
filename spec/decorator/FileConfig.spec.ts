@@ -1,4 +1,4 @@
-import { FileConfig } from '../../src/decorator/FileConfig';
+import { FileConfig } from '../../src';
 
 class MockFileConfig {
     @FileConfig('some/path')

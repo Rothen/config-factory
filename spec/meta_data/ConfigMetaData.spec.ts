@@ -1,4 +1,4 @@
-import { ConfigMetaData } from '../../src/meta_data/ConfigMetaData';
+import { ConfigMetaData } from '../../src';
 
 class MockConfigMetaData extends ConfigMetaData {
     protected async processValue(filePath: any): Promise<any> {

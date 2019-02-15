@@ -1,4 +1,4 @@
-import { HostConfig } from '../../src/decorator/HostConfig';
+import { HostConfig } from '../../src';
 
 class MockHostConfig {
     @HostConfig()

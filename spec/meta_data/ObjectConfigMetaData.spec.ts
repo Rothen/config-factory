@@ -1,4 +1,4 @@
-import { ObjectConfigMetaData } from '../../src/meta_data/ObjectConfigMetaData';
+import { ObjectConfigMetaData } from '../../src';
 
 describe('Config', () => {
     beforeEach(() => {

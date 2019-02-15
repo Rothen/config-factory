@@ -1,4 +1,4 @@
-import { PortConfigMetaData } from '../../src/meta_data/PortConfigMetaData';
+import { PortConfigMetaData } from '../../src';
 
 describe('Config', () => {
     beforeEach(() => {

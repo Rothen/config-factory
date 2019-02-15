@@ -1,4 +1,4 @@
-import { StringConfig } from '../../src/decorator/StringConfig';
+import { StringConfig } from '../../src';
 
 class MockStringConfig {
     @StringConfig()

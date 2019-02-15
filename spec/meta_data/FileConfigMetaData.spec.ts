@@ -1,4 +1,4 @@
-import { FileConfigMetaData } from '../../src/meta_data/FileConfigMetaData';
+import { FileConfigMetaData } from '../../src';
 
 describe('Config', () => {
     beforeEach(() => {

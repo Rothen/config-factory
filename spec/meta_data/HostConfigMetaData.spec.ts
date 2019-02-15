@@ -1,4 +1,4 @@
-import { HostConfigMetaData } from '../../src/meta_data/HostConfigMetaData';
+import { HostConfigMetaData } from '../../src';
 
 describe('Config', () => {
     beforeEach(() => {

@@ -1,4 +1,4 @@
-import { StringConfigMetaData } from '../../src/meta_data/StringConfigMetaData';
+import { StringConfigMetaData } from '../../src';
 
 describe('Config', () => {
     beforeEach(() => {

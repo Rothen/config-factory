@@ -1,4 +1,4 @@
-import { PortConfig } from '../../src/decorator/PortConfig';
+import { PortConfig } from '../../src';
 
 class MockPortConfig {
     @PortConfig()

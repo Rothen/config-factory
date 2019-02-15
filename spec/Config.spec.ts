@@ -1,4 +1,5 @@
-import { ConfigFactory } from '../src/ConfigFactory';
+import { ConfigFactory } from '../src';
+import { ConfigModelNew } from './ConfigModelNew';
 
 describe('Config', () => {
     beforeEach(() => {
@@ -6,6 +7,24 @@ describe('Config', () => {
 
     it('should be created', () => {
         expect(ConfigFactory).toBeTruthy();
+    });
+
+    it('should work correctly', async () => {
+        const config = await ConfigFactory.load(ConfigModelNew);
+        const checkConfig = new ConfigModelNew();
+
+        checkConfig.server.host = 'testing.server.host';
+        checkConfig.server.port = 8000;
+        checkConfig.server.ws_port = 8001;
+        checkConfig.server.certificate = '';
+        checkConfig.server.certificatePath = 'test.cert';
+
+        checkConfig.mqtt.host = 'testing.mqtt.host';
+        checkConfig.mqtt.port = 9001;
+        checkConfig.mqtt.user = 'user';
+        checkConfig.mqtt.password = 'TestingPassword';
+
+        expect(config).toEqual(checkConfig);
     });
 
     /* public static addConfigMetaData(configMetaData: ConfigMetaData): void

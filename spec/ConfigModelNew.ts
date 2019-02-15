@@ -1,8 +1,13 @@
-import { FileConfig } from './decorator/FileConfig';
-import { HostConfig } from './decorator/HostConfig';
-import { PortConfig } from './decorator/PortConfig';
-import { StringConfig } from './decorator/StringConfig';
-import { ObjectConfig } from './decorator/ObjectConfig';
+import {
+    ObjectConfig,
+    HostConfig,
+    PortConfig,
+    FileConfig,
+    StringConfig
+} from '../src';
+
+
+
 
 export class ConfigModelNew {
     @ObjectConfig()
@@ -18,15 +23,10 @@ export class ConfigServer {
     public port: number = parseInt(process.env.HTTPS_PORT, 10) || 1081;
     @PortConfig()
     public ws_port: number = parseInt(process.env.WEBSOCKET_PORT, 10) || 1443;
-    @FileConfig((serverConfig: ConfigServer) => serverConfig.certificatePath)
+    @FileConfig('certificatePath')
     public certificate: string = process.env.CERTIFICATE || './certs/server.crt';
-    @FileConfig((serverConfig: ConfigServer) => serverConfig.keyContentPath)
-    public key: string = process.env.KEY || './certs/server.key';
-    @StringConfig()
-    public test: string;
 
     public certificatePath: string;
-    public keyContentPath: string;
 }
 
 export class ConfigMQTT {

@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { ConfigModelNew } from './ConfigModelNew';
-import { ConfigMetaData } from './meta_data/ConfigMetaData';
 import { ObjectConfigMetaData } from './meta_data/ObjectConfigMetaData';
+import { ConfigMetaData } from './meta_data/ConfigMetaData';
 
 export abstract class ConfigFactory {
     private static errors: any[] = [];
@@ -24,13 +23,13 @@ export abstract class ConfigFactory {
         }
     }
 
-    public static async load(configClass: new () => ConfigModelNew,
+    public static async load<T>(configClass: new () => T,
         rootDir: string = './',
-        fileName: string = 'config.json'): Promise<ConfigModelNew> {
+        fileName: string = 'config.json'): Promise<T> {
         this.errors = [];
 
         try {
-            const config: ConfigModelNew = new configClass();
+            const config: T = new configClass();
             const file = path.resolve(rootDir, fileName);
             const configContent = JSON.parse(await this.readFile(file));
 
