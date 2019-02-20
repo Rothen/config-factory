@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { PortConfig } from '../../src';
 
 class MockPortConfig {
@@ -13,6 +14,6 @@ describe('PortConfig', () => {
     });
 
     it('should be created', () => {
-        expect(mockPortConfig).toBeTruthy();
+        expect(mockPortConfig).to.be.ok;
     });
 });

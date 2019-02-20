@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { FileConfig } from '../../src';
 
 class MockFileConfig {
@@ -13,6 +14,6 @@ describe('FileConfig', () => {
     });
 
     it('should be created', () => {
-        expect(mockFileConfig).toBeTruthy();
+        expect(mockFileConfig).to.be.ok;
     });
 });

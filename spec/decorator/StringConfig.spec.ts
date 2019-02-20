@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { StringConfig } from '../../src';
 
 class MockStringConfig {
@@ -13,6 +14,6 @@ describe('StringConfig', () => {
     });
 
     it('should be created', () => {
-        expect(mockStringConfig).toBeTruthy();
+        expect(mockStringConfig).to.be.ok;
     });
 });

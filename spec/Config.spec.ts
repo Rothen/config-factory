@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { ConfigFactory } from '../src';
 import { ConfigModel } from './test_files/ConfigModel';
 
@@ -6,7 +7,7 @@ describe('Config', () => {
     });
 
     it('should be created', () => {
-        expect(ConfigFactory).toBeTruthy();
+        expect(ConfigFactory).to.be.ok;
     });
 
     it('should work correctly', async () => {
@@ -24,7 +25,7 @@ describe('Config', () => {
         checkConfig.mqtt.user = 'user';
         checkConfig.mqtt.password = 'TestingPassword';
 
-        expect(config).toEqual(checkConfig);
+        expect(config).to.deep.equal(checkConfig);
     });
 
     it('should work correctly with errors', async () => {
@@ -41,8 +42,8 @@ describe('Config', () => {
         checkConfig.mqtt.user = 'user';
         checkConfig.mqtt.password = 'TestingPassword';
 
-        expect(ConfigFactory.hasErrors()).toBe(true);
-        expect(config).toEqual(checkConfig);
+        expect(ConfigFactory.hasErrors()).to.be.true;
+        expect(config).to.deep.equal(checkConfig);
     });
 
     /* public static addConfigMetaData(configMetaData: ConfigMetaData): void

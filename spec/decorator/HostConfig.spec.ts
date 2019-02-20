@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { HostConfig } from '../../src';
 
 class MockHostConfig {
@@ -13,6 +14,6 @@ describe('HostConfig', () => {
     });
 
     it('should be created', () => {
-        expect(mockHostConfig).toBeTruthy();
+        expect(mockHostConfig).to.be.ok;
     });
 });

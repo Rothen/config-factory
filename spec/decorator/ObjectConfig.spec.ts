@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import { ObjectConfig } from '../../src';
 
 class MockObjectConfig {
@@ -13,6 +14,6 @@ describe('ObjectConfig', () => {
     });
 
     it('should be created', () => {
-        expect(mockObjectConfig).toBeTruthy();
+        expect(mockObjectConfig).to.be.ok;
     });
 });

@@ -1,12 +1,13 @@
+import { expect } from 'chai';
 import { FileConfigMetaData } from '../../src';
 
-describe('Config', () => {
+describe('FileConfigMetaData', () => {
     beforeEach(() => {
     });
 
     it('should be created', () => {
         const fileConfigMetaData = new FileConfigMetaData(null, null, null);
-        expect(fileConfigMetaData).toBeTruthy();
+        expect(fileConfigMetaData).to.be.ok;
     });
 
     // protected async processValue(filePath: string): Promise<string>
