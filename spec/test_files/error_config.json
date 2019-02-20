@@ -3,7 +3,7 @@
         "host": "testing.server.host",
         "port": 8000,
         "ws_port": 8001,
-        "certificate": "test.cert"
+        "certificate": "spec/test_files/test.cert"
     },
     "mqtt": {
         "host": "testing.mqtt.host",

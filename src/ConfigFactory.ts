@@ -7,6 +7,14 @@ export abstract class ConfigFactory {
     private static errors: Error[] = [];
     private static configMetaData: any = {};
 
+    public static hasErrors(): boolean {
+        return this.errors.length > 0;
+    }
+
+    public static getErrors(): Error[] {
+        return this.errors;
+    }
+
     public static addConfigMetaData(configMetaData: ConfigMetaData): void {
         const className = configMetaData.target.constructor.name;
         const propertyName = configMetaData.property;
@@ -46,33 +54,24 @@ export abstract class ConfigFactory {
 
             console.error(message);
         } finally {
-            this.configMetaData = [];
         }
     }
 
-    public static hasErrors(): boolean {
-        return this.errors.length > 0;
-    }
-
-    public static getErrors(): Error[] {
-        return this.errors;
-    }
-
     private static async map(obj: any, config: any, jsonPath: String = ''): Promise<void> {
-            for (const propertyName in obj) {
-                if (!obj.hasOwnProperty(propertyName)) {
-                    continue;
-                }
-                try {
-                    const className = obj.constructor.name;
-
-                    if (this.metaDataExists(className, propertyName)) {
-                        await this.loadConfigMetaData(obj, config, className, propertyName, jsonPath);
-                    }
-                } catch (e) {
-                    this.errors.push(e);
-                }
+        for (const propertyName in obj) {
+            if (!obj.hasOwnProperty(propertyName)) {
+                continue;
             }
+            try {
+                const className = obj.constructor.name;
+
+                if (this.metaDataExists(className, propertyName)) {
+                    await this.loadConfigMetaData(obj, config, className, propertyName, jsonPath);
+                }
+            } catch (e) {
+                this.errors.push(e);
+            }
+        }
     }
 
     private static async loadConfigMetaData(obj: any, config: any, className: string,

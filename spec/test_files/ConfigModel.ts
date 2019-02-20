@@ -4,12 +4,9 @@ import {
     PortConfig,
     FileConfig,
     StringConfig
-} from '../src';
+} from '../../src';
 
-
-
-
-export class ConfigModelNew {
+export class ConfigModel {
     @ObjectConfig()
     public server: ConfigServer = new ConfigServer();
     @ObjectConfig()
