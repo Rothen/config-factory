@@ -1,6 +1,6 @@
 {
   "name": "config-factory",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "## config-factory \r",
   "main": "build/index.js",
   "types": "build/index.d.ts",
