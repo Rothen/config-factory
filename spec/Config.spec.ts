@@ -1,5 +1,5 @@
 import { ConfigFactory } from '../src';
-import { ConfigModelNew } from './ConfigModelNew';
+import { ConfigModelNew } from './ConfigModel';
 
 describe('Config', () => {
     beforeEach(() => {
@@ -10,8 +10,28 @@ describe('Config', () => {
     });
 
     it('should work correctly', async () => {
-        const config = await ConfigFactory.load(ConfigModelNew);
+        const config = await ConfigFactory.load(ConfigModelNew, 'config.json', './spec/');
         const checkConfig = new ConfigModelNew();
+
+        checkConfig.server.host = 'testing.server.host';
+        checkConfig.server.port = 8000;
+        checkConfig.server.ws_port = 8001;
+        checkConfig.server.certificate = '';
+        checkConfig.server.certificatePath = 'test.cert';
+        checkConfig.server.undefinedProperty = 'gugus';
+
+        checkConfig.mqtt.host = 'testing.mqtt.host';
+        checkConfig.mqtt.port = 9001;
+        checkConfig.mqtt.user = 'user';
+        checkConfig.mqtt.password = 'TestingPassword';
+
+        expect(config).toEqual(checkConfig);
+    });
+
+    fit('should work correctly with errors', async () => {
+        const config = await ConfigFactory.load(ConfigModelNew, 'error_config.json', './spec/');
+        const checkConfig = new ConfigModelNew();
+        console.log(config);
 
         checkConfig.server.host = 'testing.server.host';
         checkConfig.server.port = 8000;
@@ -25,6 +45,7 @@ describe('Config', () => {
         checkConfig.mqtt.password = 'TestingPassword';
 
         expect(config).toEqual(checkConfig);
+        expect(ConfigFactory.hasErrors()).toBe(true);
     });
 
     /* public static addConfigMetaData(configMetaData: ConfigMetaData): void

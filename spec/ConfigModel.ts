@@ -14,6 +14,8 @@ export class ConfigModelNew {
     public server: ConfigServer = new ConfigServer();
     @ObjectConfig()
     public mqtt: ConfigMQTT = new ConfigMQTT();
+    @ObjectConfig()
+    public undefinedObj: any = undefined;
 }
 
 export class ConfigServer {
@@ -25,6 +27,8 @@ export class ConfigServer {
     public ws_port: number = parseInt(process.env.WEBSOCKET_PORT, 10) || 1443;
     @FileConfig('certificatePath')
     public certificate: string = process.env.CERTIFICATE || './certs/server.crt';
+    @StringConfig()
+    public undefinedProperty: string = undefined;
 
     public certificatePath: string;
 }

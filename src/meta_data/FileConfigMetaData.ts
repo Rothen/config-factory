@@ -9,16 +9,13 @@ export class FileConfigMetaData extends ConfigMetaData {
         this.pathProperty = pathProperty;
     }
 
-    protected async processValue(filePath: string): Promise<string> {
-        console.log(filePath);
+    protected async processValue(target: any, filePath: string): Promise<string> {
         if (!filePath || filePath.length === 0) {
             throw new Error(`The path config ${this.property} cannot be empty`);
         }
 
         if (this.pathProperty !== undefined) {
-            console.log(this.pathProperty);
-            console.log(typeof this.pathProperty);
-            this.pathProperty = filePath;
+            target[this.pathProperty] = filePath;
         }
 
         const fileHandler: fs.promises.FileHandle = await fs.promises.open(filePath, 'r');

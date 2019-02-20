@@ -1,13 +1,13 @@
 {
   "name": "config-factory",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.3.01",
+  "description": "## config-factory \r",
   "main": "build/index.js",
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "npm": "^5.10.0"
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rothen/config-factory.git"
   },
-  "repository": "github:Rothen/config-factory",
   "devDependencies": {
     "@types/jasmine": "^3.3.8",
     "@types/node": "^10.12.21",
@@ -36,5 +36,9 @@
     "factory"
   ],
   "author": "Benjamin Ricchiuto",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rothen/config-factory/issues"
+  },
+  "homepage": "https://github.com/Rothen/config-factory#readme"
 }

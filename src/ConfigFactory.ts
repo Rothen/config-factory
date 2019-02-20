@@ -4,7 +4,7 @@ import { ObjectConfigMetaData } from './meta_data/ObjectConfigMetaData';
 import { ConfigMetaData } from './meta_data/ConfigMetaData';
 
 export abstract class ConfigFactory {
-    private static errors: any[] = [];
+    private static errors: Error[] = [];
     private static configMetaData: any = {};
 
     public static addConfigMetaData(configMetaData: ConfigMetaData): void {
@@ -24,8 +24,8 @@ export abstract class ConfigFactory {
     }
 
     public static async load<T>(configClass: new () => T,
-        rootDir: string = './',
-        fileName: string = 'config.json'): Promise<T> {
+        fileName: string = 'config.json',
+        rootDir: string = './'): Promise<T> {
         this.errors = [];
 
         try {
@@ -37,34 +37,55 @@ export abstract class ConfigFactory {
 
             return config;
         } catch (e) {
-            console.error(e);
+            this.errors.push(e);
+            let message = '';
+
+            for (const error of this.errors) {
+                message += `${error.message} \n`;
+            }
+
+            console.error(message);
         } finally {
             this.configMetaData = [];
-            if (this.errors.length > 0) {
-                // Do output
-            }
         }
     }
 
-    private static async map(obj: any, config: any): Promise<void> {
-        for (const propertyName in obj) {
-            if (!obj.hasOwnProperty(propertyName)) {
-                continue;
-            }
-
-            const className = obj.constructor.name;
-
-            if (this.metaDataExists(className, propertyName)) {
-                await this.loadConfigMetaData(obj, config, className, propertyName);
-            }
-        }
+    public static hasErrors(): boolean {
+        return this.errors.length > 0;
     }
 
-    private static async loadConfigMetaData(obj: any, config: any, className: string, propertyName: string): Promise<void> {
+    public static getErrors(): Error[] {
+        return this.errors;
+    }
+
+    private static async map(obj: any, config: any, jsonPath: String = ''): Promise<void> {
+            for (const propertyName in obj) {
+                if (!obj.hasOwnProperty(propertyName)) {
+                    continue;
+                }
+                try {
+                    const className = obj.constructor.name;
+
+                    if (this.metaDataExists(className, propertyName)) {
+                        await this.loadConfigMetaData(obj, config, className, propertyName, jsonPath);
+                    }
+                } catch (e) {
+                    this.errors.push(e);
+                }
+            }
+    }
+
+    private static async loadConfigMetaData(obj: any, config: any, className: string,
+        propertyName: string, jsonPath: String = ''): Promise<void> {
+
         const configMetaData: ConfigMetaData = this.getMetaData(className, propertyName);
 
+        if (obj[propertyName] === undefined && config[propertyName] == null) {
+            throw new Error(`"${jsonPath}${propertyName}" must be defined.`);
+        }
+
         if (this.isObjectConfigMetaData(configMetaData)) {
-            await this.map(obj[propertyName], config[propertyName]);
+            await this.map(obj[propertyName], config[propertyName], `${jsonPath}${propertyName}.`);
         } else if (configMetaData) {
             await configMetaData.setConfig(obj, config);
         }

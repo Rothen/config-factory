@@ -10,7 +10,7 @@ export class StringConfigMetaData extends ConfigMetaData {
         this.maxLength = Math.min(maxLength, this.maxLength);
     }
 
-    protected async processValue(value: string): Promise<string> {
+    protected async processValue(target: any, value: string): Promise<string> {
         if ((value.length < this.minLength || value.length > this.maxLength)) {
             let errorMessage = `String ${this.property} must have a length `;
             if (this.maxLength === Infinity) {
