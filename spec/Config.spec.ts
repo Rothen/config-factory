@@ -10,7 +10,7 @@ describe('Config', () => {
     });
 
     it('should work correctly', async () => {
-        const config = await ConfigFactory.load(ConfigModelNew, 'config.json', './spec/');
+        const config = await ConfigFactory.load(ConfigModelNew, 'config.json', './spec/test_files/');
         const checkConfig = new ConfigModelNew();
 
         checkConfig.server.host = 'testing.server.host';
@@ -29,7 +29,7 @@ describe('Config', () => {
     });
 
     fit('should work correctly with errors', async () => {
-        const config = await ConfigFactory.load(ConfigModelNew, 'error_config.json', './spec/');
+        const config = await ConfigFactory.load(ConfigModelNew, 'error_config.json', './spec/test_files/');
         const checkConfig = new ConfigModelNew();
         console.log(config);
 
